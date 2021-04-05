@@ -6,7 +6,6 @@ const isAuthenticated = (req, res, next) => {
   } else {
     next(new Error('Not Authenticated'))
   }
-
 }
 
 module.exports = isAuthenticated

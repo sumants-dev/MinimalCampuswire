@@ -1,23 +1,21 @@
 const express = require('express')
 const User = require('../models/user')
 const isAuthenticated = require('../middleware/isAuthenticated')
+
 const router = express.Router()
 
 router.post('/signup', async (req, res, next) => {
-  
-  try {  
+  try {
     const { username, password } = req.body
 
-    if (username === undefined || username === '' || username === null 
+    if (username === undefined || username === '' || username === null
         || password === undefined || password === '' || password === null) {
       throw new Error('Error: Signup Empty Fields')
-    } 
+    }
     await User.create({ username, password })
-    
   } catch (error) {
     next(error, req, res)
   }
-  
 })
 
 router.post('/login', (req, res, next) => {
@@ -39,10 +37,10 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/logout', isAuthenticated, (req, res, next) => {
-  try { 
+  try {
     req.session.username = null
     req.session.password = null
-    res.send('user logged out') 
+    res.send('user logged out')
   } catch (error) {
     next(error, req, res)
   }

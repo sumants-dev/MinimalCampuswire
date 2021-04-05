@@ -19,7 +19,7 @@ const app = express()
 // Middleware
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 })
 app.use(cookieSession({
   name: 'session',
