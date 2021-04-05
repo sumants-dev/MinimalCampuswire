@@ -6,7 +6,6 @@ const router = express.Router()
 router.get('/questions', async (req, res, next) => {
   try {
     const questions = await Question.find({})
-    console.log(questions)
     res.send(questions)
   } catch (error) {
     next(error, res, req)
@@ -21,6 +20,11 @@ router.post('/questions/add', isAuthenticated, async (req, res, next) => {
     || author === undefined || author === '' || author === null) {
       throw new Error('Error: Question Add Fields')
     } 
+
+    if(Question.count({questionText}) !== 0) {
+      throw new Error('Error: Question already exists')
+    }
+
     await Question.create({ questionText, author })
     res.send('Question Created')
 
