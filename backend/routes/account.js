@@ -13,6 +13,7 @@ router.post('/signup', async (req, res, next) => {
       throw new Error('Error: Signup Empty Fields')
     }
     await User.create({ username, password })
+    res.status(200).send('User Created')
   } catch (error) {
     next(error, req, res)
   }
@@ -28,7 +29,7 @@ router.post('/login', (req, res, next) => {
         req.session.password = password
         res.send('logged in')
       } else {
-        res.send('create a new account')
+        res.status(400).send({ message: 'Error: User and Pass Combo wrong' })
       }
     })
   } catch (error) {

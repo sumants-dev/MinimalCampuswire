@@ -1,10 +1,11 @@
 const User = require('../models/user')
 
 const signupErrorHandler = (err, req, res, next) => {
+  console.log(err)
   if (err.message === 'Error: Signup Empty Fields') {
-    res.send('Error: Empty fields for signup')
+    res.status(400).send({ message: err.message })
   } else if (User.count({ username: req.body.username }) !== 0 && err.name === 'MongoError') {
-    res.send('Error: Username already exists')
+    res.status(400).send({ message: 'Error: Username already exists' })
   } else {
     next(err, req, res)
   }
