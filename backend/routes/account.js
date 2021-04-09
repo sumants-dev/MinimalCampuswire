@@ -4,6 +4,10 @@ const isAuthenticated = require('../middleware/isAuthenticated')
 
 const router = express.Router()
 
+router.get('/loggedUser', async (req, res, next) => {
+  res.send(req.session.username)
+})
+
 router.post('/signup', async (req, res, next) => {
   try {
     const { username, password } = req.body

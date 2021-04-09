@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Signup from './Signup'
 import Login from './Login'
 import Homepage from './Homepage'
@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 
 // User https://reactrouter.com/web/example/url-params to figure out front end routing
+// Used Bulma example components throughout
 const App = () => {
   return (
     <>

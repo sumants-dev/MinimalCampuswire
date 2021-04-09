@@ -22,10 +22,6 @@ router.post('/questions/add', isAuthenticated, async (req, res, next) => {
       throw new Error('Error: Question Add Fields')
     }
 
-    if (Question.count({ questionText }) !== 0) {
-      throw new Error('Error: Question already exists')
-    }
-
     await Question.create({ questionText, author })
     res.send('Question Created')
   } catch (error) {

@@ -1,5 +1,4 @@
 const loginErrorHandler = (err, req, res, next) => {
-  console.log(err)
   if (err.message === 'Username & Pass combo not found') {
     res.status(400).send({ message: err.message })
   } else {
